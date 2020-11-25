@@ -70,16 +70,12 @@ function Snake(){
     }
 }
 
-for(var funcName in Square.prototype){
-    Snake.prototype[funcName] = Square.prototype[funcName];
-}
-
 Snake.prototype.init = function(){
-    //创建蛇头
-    var snakeHead = new Square(2, 0, 'snakeHead');
-    snakeHead.create();
+    //创建蛇头   
 
-    this.head = snakeHead;  //存储蛇头信息
+    this.head = new Square(2, 0, 'snakeHead');  //存储蛇头信息
+    this.head.create();
+
     this.pos.push([2, 0]); //把蛇头的位置存起来
 
     //创建蛇身体1
@@ -95,10 +91,10 @@ Snake.prototype.init = function(){
 
     //形成链表关系
 
-    snakeHead.last = null;
-    snakeHead.next = snakeBody1;
+    this.head.last = null;
+    this.head.next = snakeBody1;
 
-    snakeBody1.last = snakeHead;
+    snakeBody1.last = this.head;
     snakeBody1.next = snakeBody2;
 
     snakeBody2.last = snakeBody1;
